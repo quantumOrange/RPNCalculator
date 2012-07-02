@@ -94,6 +94,6 @@
 
 -(void) clearAll
 {
-    self.operandStack =nil;
+   [self.operandStack removeAllObjects];
 }
 @end

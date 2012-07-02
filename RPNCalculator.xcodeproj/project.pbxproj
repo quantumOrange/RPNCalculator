@@ -16,6 +16,14 @@
 		EDD1B32415A0815800CE9931 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDD1B32215A0815800CE9931 /* MainStoryboard.storyboard */; };
 		EDD1B32715A0815800CE9931 /* CalculatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD1B32615A0815800CE9931 /* CalculatorViewController.m */; };
 		EDD1B32F15A090C100CE9931 /* CalculatorBrain.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD1B32E15A090C100CE9931 /* CalculatorBrain.m */; };
+		EDD1B33515A1F73D00CE9931 /* blueButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EDD1B33415A1F73D00CE9931 /* blueButton.png */; };
+		EDD1B33715A1F9AD00CE9931 /* biegeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EDD1B33615A1F9AD00CE9931 /* biegeButton.png */; };
+		EDD1B33915A1FD4100CE9931 /* longRedButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EDD1B33815A1FD4100CE9931 /* longRedButton.png */; };
+		EDD1B33B15A200DC00CE9931 /* displayBar.png in Resources */ = {isa = PBXBuildFile; fileRef = EDD1B33A15A200DC00CE9931 /* displayBar.png */; };
+		EDD1B33D15A20BB100CE9931 /* grungeLayer.png in Resources */ = {isa = PBXBuildFile; fileRef = EDD1B33C15A20BB100CE9931 /* grungeLayer.png */; };
+		EDD1B33F15A20D3A00CE9931 /* grungeLayer2.png in Resources */ = {isa = PBXBuildFile; fileRef = EDD1B33E15A20D3A00CE9931 /* grungeLayer2.png */; };
+		EDD1B34115A20E1E00CE9931 /* grungeLayer3.png in Resources */ = {isa = PBXBuildFile; fileRef = EDD1B34015A20E1E00CE9931 /* grungeLayer3.png */; };
+		EDD1B34315A2162800CE9931 /* testSquare.png in Resources */ = {isa = PBXBuildFile; fileRef = EDD1B34215A2162800CE9931 /* testSquare.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +42,14 @@
 		EDD1B32615A0815800CE9931 /* CalculatorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalculatorViewController.m; sourceTree = "<group>"; };
 		EDD1B32D15A090C100CE9931 /* CalculatorBrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculatorBrain.h; sourceTree = "<group>"; };
 		EDD1B32E15A090C100CE9931 /* CalculatorBrain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculatorBrain.m; sourceTree = "<group>"; };
+		EDD1B33415A1F73D00CE9931 /* blueButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueButton.png; sourceTree = "<group>"; };
+		EDD1B33615A1F9AD00CE9931 /* biegeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = biegeButton.png; sourceTree = "<group>"; };
+		EDD1B33815A1FD4100CE9931 /* longRedButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = longRedButton.png; sourceTree = "<group>"; };
+		EDD1B33A15A200DC00CE9931 /* displayBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = displayBar.png; sourceTree = "<group>"; };
+		EDD1B33C15A20BB100CE9931 /* grungeLayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grungeLayer.png; sourceTree = "<group>"; };
+		EDD1B33E15A20D3A00CE9931 /* grungeLayer2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grungeLayer2.png; sourceTree = "<group>"; };
+		EDD1B34015A20E1E00CE9931 /* grungeLayer3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grungeLayer3.png; sourceTree = "<group>"; };
+		EDD1B34215A2162800CE9931 /* testSquare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testSquare.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +111,14 @@
 		EDD1B31715A0815800CE9931 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				EDD1B34215A2162800CE9931 /* testSquare.png */,
+				EDD1B34015A20E1E00CE9931 /* grungeLayer3.png */,
+				EDD1B33E15A20D3A00CE9931 /* grungeLayer2.png */,
+				EDD1B33C15A20BB100CE9931 /* grungeLayer.png */,
+				EDD1B33A15A200DC00CE9931 /* displayBar.png */,
+				EDD1B33815A1FD4100CE9931 /* longRedButton.png */,
+				EDD1B33615A1F9AD00CE9931 /* biegeButton.png */,
+				EDD1B33415A1F73D00CE9931 /* blueButton.png */,
 				EDD1B31815A0815800CE9931 /* RPNCalculator-Info.plist */,
 				EDD1B31915A0815800CE9931 /* InfoPlist.strings */,
 				EDD1B31C15A0815800CE9931 /* main.m */,
@@ -156,6 +180,14 @@
 			files = (
 				EDD1B31B15A0815800CE9931 /* InfoPlist.strings in Resources */,
 				EDD1B32415A0815800CE9931 /* MainStoryboard.storyboard in Resources */,
+				EDD1B33515A1F73D00CE9931 /* blueButton.png in Resources */,
+				EDD1B33715A1F9AD00CE9931 /* biegeButton.png in Resources */,
+				EDD1B33915A1FD4100CE9931 /* longRedButton.png in Resources */,
+				EDD1B33B15A200DC00CE9931 /* displayBar.png in Resources */,
+				EDD1B33D15A20BB100CE9931 /* grungeLayer.png in Resources */,
+				EDD1B33F15A20D3A00CE9931 /* grungeLayer2.png in Resources */,
+				EDD1B34115A20E1E00CE9931 /* grungeLayer3.png in Resources */,
+				EDD1B34315A2162800CE9931 /* testSquare.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

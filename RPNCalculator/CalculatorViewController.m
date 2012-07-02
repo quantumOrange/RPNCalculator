@@ -108,7 +108,8 @@
     if (self.userIsInTheMiddleOfEnteringANumber) [self enterPressed];
     NSString *operation = [sender currentTitle];
     double result = [self.brain performOperation:operation];
-    operation=[@" " stringByAppendingString:operation];
+    self.logScreen.text= [self.logScreen.text stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"="]];
+    operation=[[@" " stringByAppendingString:operation] stringByAppendingString:@"="];
     self.logScreen.text = [self.logScreen.text stringByAppendingString:operation];
     self.display.text = [NSString stringWithFormat:@"%g",result];
 }
@@ -118,6 +119,8 @@
     NSString *numberDisplayed = self.display.text;
     [self.brain pushOperand:[numberDisplayed doubleValue]];
     numberDisplayed=[@" " stringByAppendingString:numberDisplayed];
+    //we need to remove the equals sign if there is one.
+    self.logScreen.text= [self.logScreen.text stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"="]];
     self.logScreen.text = [self.logScreen.text stringByAppendingString:numberDisplayed];
     self.userIsInTheMiddleOfEnteringANumber=NO;
 }
