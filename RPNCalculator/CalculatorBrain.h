@@ -9,7 +9,22 @@
 #import <Foundation/Foundation.h>
 
 @interface CalculatorBrain : NSObject
-- (void) pushOperand: (double)operand;
-- (double)performOperation: (NSString *) operation;
+@property (readonly) id program;
+
 - (void) clearAll;
++ (NSSet *) operators;
++ (NSSet *) functions;
++ (NSSet *) operatorsAndFunctions;
++ (NSSet *) variablesUsedInProgram:(id)program;
++ (NSDictionary *) testVariableValues:(NSString *) test;
++ (double) runProgram:(id)program;
++ (double) runProgram:(id)program usingVariableValues:(NSDictionary *)variableValues;
++ (NSString *)descriptionOfProgram:(id)program;
+- (void) pushOperand: (double)operand;
+- (void) pushOperation:(NSString *)operation;
+- (void) removeLastObjectFromProgram;
+- (void) clearAll;
+- (NSString *) stackObjectAsString:(id)stackObject;
+- (id) lastOnStack;
+- (id) secondTolastOnStack;
 @end

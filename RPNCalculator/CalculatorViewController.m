@@ -26,6 +26,18 @@
     return _brain;
 }
 
+- (IBAction)runPressed 
+{
+    if (self.userIsInTheMiddleOfEnteringANumber) [self enterPressed]; 
+    self.display.text=[NSString stringWithFormat:@"%f",[CalculatorBrain runProgram:self.brain.program]];
+}
+- (IBAction)runTest:(id)sender 
+{
+    NSDictionary *testVariableValues = [CalculatorBrain testVariableValues:[sender currentTitle]];
+    if (self.userIsInTheMiddleOfEnteringANumber) [self enterPressed]; 
+    self.display.text=[NSString stringWithFormat:@"%f",[CalculatorBrain runProgram:self.brain.program usingVariableValues:testVariableValues]];
+
+}
 
 - (IBAction)Clear 
 {
@@ -106,23 +118,32 @@
 - (IBAction)operationPressed:(UIButton *)sender 
 {
     if (self.userIsInTheMiddleOfEnteringANumber) [self enterPressed];
+    [self.brain pushOperation:sender.currentTitle];
+    self.logScreen.text = [CalculatorBrain descriptionOfProgram:self.brain.program];
+    
+    
+    /*
     NSString *operation = [sender currentTitle];
     double result = [self.brain performOperation:operation];
     self.logScreen.text= [self.logScreen.text stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"="]];
     operation=[[@" " stringByAppendingString:operation] stringByAppendingString:@"="];
     self.logScreen.text = [self.logScreen.text stringByAppendingString:operation];
     self.display.text = [NSString stringWithFormat:@"%g",result];
+     */
 }
 
 - (IBAction)enterPressed 
 {
-    NSString *numberDisplayed = self.display.text;
-    [self.brain pushOperand:[numberDisplayed doubleValue]];
-    numberDisplayed=[@" " stringByAppendingString:numberDisplayed];
-    //we need to remove the equals sign if there is one.
-    self.logScreen.text= [self.logScreen.text stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"="]];
-    self.logScreen.text = [self.logScreen.text stringByAppendingString:numberDisplayed];
+    [self.brain pushOperand:[self.display.text doubleValue]];
+    self.logScreen.text = [CalculatorBrain descriptionOfProgram:self.brain.program];
     self.userIsInTheMiddleOfEnteringANumber=NO;
+    self.display.text = @"0";
+
+   // numberDisplayed=[@" " stringByAppendingString:numberDisplayed];
+    //we need to remove the equals sign if there is one.
+   // self.logScreen.text= [self.logScreen.text stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"="]];
+   // self.logScreen.text = [self.logScreen.text stringByAppendingString:numberDisplayed];
+    
 }
 
 - (void)viewDidUnload {

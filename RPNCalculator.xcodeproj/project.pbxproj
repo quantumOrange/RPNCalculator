@@ -313,6 +313,7 @@
 				EDD1B32C15A0815900CE9931 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
