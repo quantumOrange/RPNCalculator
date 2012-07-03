@@ -73,7 +73,7 @@
     }
     else if ([operation isEqualToString:@"π"]) 
     {
-        result =  3.14159265;
+        result =  M_PI;
     }
     else 
     {
@@ -88,7 +88,8 @@
 {
     NSNumber *operandObject = [self.operandStack lastObject];
     if (operandObject) [self.operandStack removeLastObject];
-    return [operandObject doubleValue];
+    double result= [operandObject doubleValue];
+    return result;
 }
 
 
