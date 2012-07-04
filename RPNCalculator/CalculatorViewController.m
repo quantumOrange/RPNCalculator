@@ -49,6 +49,28 @@
 
 - (IBAction)backButton 
 {
+    if (self.userIsInTheMiddleOfEnteringANumber) 
+    {
+        if(self.display.text.length>1)
+        {
+            //if there is more than one digit in the display screen we just want remove the last digit
+            self.display.text= [self.display.text substringToIndex:(self.display.text.length -1)];
+        }        
+        else 
+        {
+            // if there is only one digit, we want to put a zero in the display screen
+            self.display.text=@"0";
+            self.userIsInTheMiddleOfEnteringANumber=NO;
+        }   
+    }
+    else 
+    {
+        [self.brain removeLastObjectFromProgram];
+        self.logScreen.text = [CalculatorBrain descriptionOfProgram:self.brain.program];
+    }
+
+    
+    /*
     if(self.display.text.length>1)
     {
         //if there is more than one digit in the display screen we just want remove the last digit
@@ -60,6 +82,7 @@
         self.display.text=@"0";
         self.userIsInTheMiddleOfEnteringANumber=NO;
     }
+     */
 }
 
 - (IBAction)plusMinus 

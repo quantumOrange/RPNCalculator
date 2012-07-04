@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EDC4F9B915A4C65A002ED7B8 /* blueSunkButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EDC4F9B715A4C65A002ED7B8 /* blueSunkButton.png */; };
+		EDC4F9BA15A4C65A002ED7B8 /* darkblueSunkButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EDC4F9B815A4C65A002ED7B8 /* darkblueSunkButton.png */; };
+		EDC4F9BC15A4C672002ED7B8 /* biegeSunkButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EDC4F9BB15A4C672002ED7B8 /* biegeSunkButton.png */; };
+		EDC4F9BE15A4C678002ED7B8 /* redSunkButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EDC4F9BD15A4C678002ED7B8 /* redSunkButton.png */; };
+		EDC4F9C015A4CBF2002ED7B8 /* longOrangSunkButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EDC4F9BF15A4CBF2002ED7B8 /* longOrangSunkButton.png */; };
+		EDC4F9C215A4DF55002ED7B8 /* displayScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = EDC4F9C115A4DF55002ED7B8 /* displayScreen.png */; };
 		EDD1B31115A0815800CE9931 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDD1B31015A0815800CE9931 /* UIKit.framework */; };
 		EDD1B31315A0815800CE9931 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDD1B31215A0815800CE9931 /* Foundation.framework */; };
 		EDD1B31515A0815800CE9931 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDD1B31415A0815800CE9931 /* CoreGraphics.framework */; };
@@ -27,6 +33,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EDC4F9B715A4C65A002ED7B8 /* blueSunkButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueSunkButton.png; sourceTree = "<group>"; };
+		EDC4F9B815A4C65A002ED7B8 /* darkblueSunkButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = darkblueSunkButton.png; sourceTree = "<group>"; };
+		EDC4F9BB15A4C672002ED7B8 /* biegeSunkButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = biegeSunkButton.png; sourceTree = "<group>"; };
+		EDC4F9BD15A4C678002ED7B8 /* redSunkButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redSunkButton.png; sourceTree = "<group>"; };
+		EDC4F9BF15A4CBF2002ED7B8 /* longOrangSunkButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = longOrangSunkButton.png; sourceTree = "<group>"; };
+		EDC4F9C115A4DF55002ED7B8 /* displayScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = displayScreen.png; sourceTree = "<group>"; };
 		EDD1B30C15A0815800CE9931 /* RPNCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RPNCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDD1B31015A0815800CE9931 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EDD1B31215A0815800CE9931 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -69,6 +81,12 @@
 		EDD1B30115A0815800CE9931 = {
 			isa = PBXGroup;
 			children = (
+				EDC4F9C115A4DF55002ED7B8 /* displayScreen.png */,
+				EDC4F9BF15A4CBF2002ED7B8 /* longOrangSunkButton.png */,
+				EDC4F9BD15A4C678002ED7B8 /* redSunkButton.png */,
+				EDC4F9BB15A4C672002ED7B8 /* biegeSunkButton.png */,
+				EDC4F9B715A4C65A002ED7B8 /* blueSunkButton.png */,
+				EDC4F9B815A4C65A002ED7B8 /* darkblueSunkButton.png */,
 				EDD1B31615A0815800CE9931 /* RPNCalculator */,
 				EDD1B30F15A0815800CE9931 /* Frameworks */,
 				EDD1B30D15A0815800CE9931 /* Products */,
@@ -188,6 +206,12 @@
 				EDD1B33F15A20D3A00CE9931 /* grungeLayer2.png in Resources */,
 				EDD1B34115A20E1E00CE9931 /* grungeLayer3.png in Resources */,
 				EDD1B34315A2162800CE9931 /* testSquare.png in Resources */,
+				EDC4F9B915A4C65A002ED7B8 /* blueSunkButton.png in Resources */,
+				EDC4F9BA15A4C65A002ED7B8 /* darkblueSunkButton.png in Resources */,
+				EDC4F9BC15A4C672002ED7B8 /* biegeSunkButton.png in Resources */,
+				EDC4F9BE15A4C678002ED7B8 /* redSunkButton.png in Resources */,
+				EDC4F9C015A4CBF2002ED7B8 /* longOrangSunkButton.png in Resources */,
+				EDC4F9C215A4DF55002ED7B8 /* displayScreen.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
