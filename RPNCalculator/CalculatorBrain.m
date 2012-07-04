@@ -75,7 +75,7 @@
         NSArray *resultAndStack  = [self popDescriptionOffStack:stack];
         if (result) 
         {
-            result = [NSString stringWithFormat:@"%@,%@",result,[resultAndStack objectAtIndex:0]];
+            result = [NSString stringWithFormat:@"%@,%@",[resultAndStack objectAtIndex:0],result];
         }
         else 
         {
@@ -117,11 +117,12 @@
             //Again,if we get back something compound we'll need to add brackets
             isCompound=[[arrayForSecondArgument objectAtIndex:2] boolValue];
             if (isCompound) secondArgument=[NSString stringWithFormat:@"(%@)",secondArgument];
-            
-            description = [NSString stringWithFormat:@"%@ %@ %@",firstArgument,topOfStack,secondArgument];
+            //the firstArgument taken from the stack is the secong argument entered, so it goes on the right
+            //and the secondArgument is really the first, so it goes on the left 
+            description = [NSString stringWithFormat:@"%@ %@ %@",secondArgument ,topOfStack,firstArgument];
             stack=[arrayForSecondArgument objectAtIndex:1];
             
-            //the result is compound so if it gets fed into something else, it'll need brackeks
+            //the result is compound so if it gets fed into something else, it'll need brackets
             isCompound = YES;
         }
         else if ([[self functions] member:topOfStack]) 
