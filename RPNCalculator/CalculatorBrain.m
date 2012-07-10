@@ -48,7 +48,7 @@
 
 + (NSSet *) functions
 {
-    return [NSSet setWithObjects:@"√",@"cin",@"cos",nil];
+    return [NSSet setWithObjects:@"√",@"sin",@"cos",nil];
 }
 
 + (NSSet *) operatorsAndFunctions
@@ -151,73 +151,123 @@
 
 
 
+ 
 
-
-+ (double)popOperandOffStack:(NSMutableArray *)stack
++ (id) popOperandOffStack:(NSMutableArray *)stack
 {
-    double result = 0;
+    double result;
     id topOfStack = [stack lastObject];
     if(topOfStack) [stack removeLastObject];
     
     if([topOfStack isKindOfClass:[NSNumber class]])
     {
-        result =[topOfStack doubleValue];
+        return topOfStack;
     }
     else if ([topOfStack isKindOfClass:[NSString class]])
     {
-        NSString *operation = topOfStack;
-        if ([operation isEqualToString:@"+"])
+      NSString *operation = topOfStack;
+        if ([[self operators] member:topOfStack] ) 
         {
-            result =  [self popOperandOffStack:stack] + [self popOperandOffStack:stack];
-        } 
-        else if ([operation isEqualToString:@"*"]) {
-            result =  [self popOperandOffStack:stack] * [self popOperandOffStack:stack];
-        }
-        
-        else if ([operation isEqualToString:@"/"]) 
-        {
-            double denominator=[self popOperandOffStack:stack];
-            double numerator=[self popOperandOffStack:stack];
+            //operators need two arguments
+            id popOne=[self popOperandOffStack:stack];
+            id popTwo=[self popOperandOffStack:stack];
             
-            if (denominator) 
+            if ([popOne isKindOfClass:[NSNumber class]] && [popTwo isKindOfClass:[NSNumber class]] ) 
             {
-                result =  numerator / denominator;
+                double argOne = [popOne doubleValue];
+                double argTwo = [popTwo doubleValue];
+               
+                if ([operation isEqualToString:@"+"])
+                {
+                    result =  argTwo + argOne;
+                } 
+                else if ([operation isEqualToString:@"*"]) 
+                {
+                    result =  argTwo * argOne;
+                }
+                
+                else if ([operation isEqualToString:@"/"]) 
+                {
+                    if (argOne) 
+                    {
+                        result =  argTwo/ argOne;
+                    }
+                    else 
+                    {
+                        return @"Infinity!";   
+                    }    
+                }
+                else if ([operation isEqualToString:@"-"]) 
+                {
+                    result =  argTwo  - argOne;
+                }
             }
             else 
             {
-                result = 0;   
-            }    
+                //One of the pops must be an error
+                if ([popOne isKindOfClass:[NSString class]]) 
+                {
+                    return popOne;
+                }
+                else if ([popTwo isKindOfClass:[NSString class]]) 
+                {
+                    return popTwo;
+                }
+                else
+                {
+                    //Or else I don't know whats going on...
+                    return @"Unknown Error!";
+                }
+            }
         }
-        else if ([operation isEqualToString:@"-"]) 
+        else if ([[self functions] member:topOfStack]) 
         {
-    
-            double secondArgument=[self popOperandOffStack:stack];
-            result =  [self popOperandOffStack:stack]  - secondArgument;
-        }
-        else if ([operation isEqualToString:@"sin"]) 
-        {
-            result =  sin([self popOperandOffStack:stack]);
-        }
-        else if ([operation isEqualToString:@"cos"]) 
-        {
-            result =  cos([self popOperandOffStack:stack]);
-        }
-        else if ([operation isEqualToString:@"√"]) 
-        {
-            result =  sqrt([self popOperandOffStack:stack]);
+            //these functions need only one argument
+            id pop=[self popOperandOffStack:stack];
+            if ([pop isKindOfClass:[NSNumber class]])
+            {
+                double arg = [pop doubleValue];  
+                
+                if ([operation isEqualToString:@"sin"]) 
+                {
+                    result =  sin(arg);
+                }
+                else if ([operation isEqualToString:@"cos"]) 
+                {
+                    result =  cos(arg);
+                }
+                else if ([operation isEqualToString:@"√"]) 
+                {
+                    if (arg>=0) 
+                    {
+                        result =  sqrt(arg);
+                    }
+                    else
+                    {
+                        return @"Complex!";
+                    }
+                }
+
+            }
+            else
+            {
+                // pop must be an error message
+                return pop;
+            }
+            
         }
         else if ([operation isEqualToString:@"π"]) {
             result = M_PI;
         }
         else 
         {
-            result =0;
+            return @"Unknown Error!";
         }
     }
-    return result;
+    return [NSNumber numberWithFloat:result];
 }
 
-+ (double)runProgram:(id)program 
++ (id)runProgram: (id) program 
 {
     NSMutableArray *stack;
     if([program isKindOfClass:[NSArray class]])
@@ -227,7 +277,7 @@
     return [self popOperandOffStack:stack];
 }
 
-+ (double)runProgram:(id)program usingVariableValues:(NSDictionary *)variableValues;
++ (id)runProgram:(id)program usingVariableValues:(NSDictionary *)variableValues;
 {
     NSMutableArray *stack;
     if([program isKindOfClass:[NSArray class]])

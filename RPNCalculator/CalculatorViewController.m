@@ -30,7 +30,7 @@
 - (IBAction)runPressed 
 {
     if (self.userIsInTheMiddleOfEnteringANumber) [self enterPressed]; 
-    self.display.text=[NSString stringWithFormat:@"%f",[CalculatorBrain runProgram:self.brain.program]];
+    self.display.text=[NSString stringWithFormat:@"%@",[CalculatorBrain runProgram:self.brain.program]];
     self.displayVariables.text=@"x=0 y=0 z=0";
     //self.logScreen.text= [self.logScreen.text stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"="]];
     NSRange range =[self.logScreen.text rangeOfString:@"="] ;
@@ -43,7 +43,7 @@
 {
     NSDictionary *testVariableValues = [CalculatorBrain testVariableValues:[sender currentTitle]];
     if (self.userIsInTheMiddleOfEnteringANumber) [self enterPressed]; 
-    self.display.text=[NSString stringWithFormat:@"%f",[CalculatorBrain runProgram:self.brain.program usingVariableValues:testVariableValues]];
+    self.display.text=[NSString stringWithFormat:@"%@",[CalculatorBrain runProgram:self.brain.program usingVariableValues:testVariableValues]];
     
     
     self.displayVariables.text=@"  ";

@@ -17,8 +17,8 @@
 + (NSSet *) operatorsAndFunctions;
 + (NSSet *) variablesUsedInProgram:(id)program;
 + (NSDictionary *) testVariableValues:(NSString *) test;
-+ (double) runProgram:(id)program;
-+ (double) runProgram:(id)program usingVariableValues:(NSDictionary *)variableValues;
++ (id) runProgram:(id)program;
++ (id) runProgram:(id)program usingVariableValues:(NSDictionary *)variableValues;
 + (NSString *)descriptionOfProgram:(id)program;
 - (void) pushOperand: (double)operand;
 - (void) pushOperation:(NSString *)operation;
