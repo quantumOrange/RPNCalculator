@@ -32,6 +32,12 @@
     if (self.userIsInTheMiddleOfEnteringANumber) [self enterPressed]; 
     self.display.text=[NSString stringWithFormat:@"%f",[CalculatorBrain runProgram:self.brain.program]];
     self.displayVariables.text=@"x=0 y=0 z=0";
+    //self.logScreen.text= [self.logScreen.text stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"="]];
+    NSRange range =[self.logScreen.text rangeOfString:@"="] ;
+    if (range.location==NSNotFound) {
+        self.logScreen.text = [self.logScreen.text stringByAppendingString:@"="];
+    }
+    
 }
 - (IBAction)runTest:(id)sender 
 {
@@ -47,6 +53,13 @@
         NSString *variableEqualsValue=[variable stringByAppendingString:[NSString stringWithFormat:@"=%@  ",value]];
         self.displayVariables.text=[self.displayVariables.text stringByAppendingString:variableEqualsValue];
     }
+    //self.logScreen.text= [self.logScreen.text stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"="]];
+    
+    NSRange range =[self.logScreen.text rangeOfString:@"="] ;
+    if (range.location==NSNotFound) {
+        self.logScreen.text = [self.logScreen.text stringByAppendingString:@"="];
+    }
+
 }
 
 - (IBAction)Clear 
@@ -54,6 +67,7 @@
     [self.brain clearAll];
     self.display.text = @"0";
     self.logScreen.text = @"";
+    self.displayVariables.text =@"";
     self.userIsInTheMiddleOfEnteringANumber=NO;
 }
 
@@ -131,6 +145,7 @@
         }
         self.userIsInTheMiddleOfEnteringANumber=YES;
     }
+    self.logScreen.text= [self.logScreen.text stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"="]];
 }
 
 - (IBAction)operationPressed:(UIButton *)sender 
@@ -139,15 +154,7 @@
     [self.brain pushOperation:sender.currentTitle];
     self.logScreen.text = [CalculatorBrain descriptionOfProgram:self.brain.program];
     
-    
-    /*
-    NSString *operation = [sender currentTitle];
-    double result = [self.brain performOperation:operation];
-    self.logScreen.text= [self.logScreen.text stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"="]];
-    operation=[[@" " stringByAppendingString:operation] stringByAppendingString:@"="];
-    self.logScreen.text = [self.logScreen.text stringByAppendingString:operation];
-    self.display.text = [NSString stringWithFormat:@"%g",result];
-     */
+
 }
 
 - (IBAction)enterPressed 
@@ -157,11 +164,6 @@
     self.userIsInTheMiddleOfEnteringANumber=NO;
     self.display.text = @"0";
 
-   // numberDisplayed=[@" " stringByAppendingString:numberDisplayed];
-    //we need to remove the equals sign if there is one.
-   // self.logScreen.text= [self.logScreen.text stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"="]];
-   // self.logScreen.text = [self.logScreen.text stringByAppendingString:numberDisplayed];
-    
 }
 
 - (void)viewDidUnload {

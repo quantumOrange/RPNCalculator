@@ -114,7 +114,7 @@
             //feed back in the remains of the stack to get the second argument
             NSArray *arrayForSecondArgument=[self popDescriptionOffStack:[arrayForFirstArgument objectAtIndex:1]];
             NSString *secondArgument=[arrayForSecondArgument objectAtIndex:0];
-            if(secondArgument) 
+            if([secondArgument isEqualToString:@""]) 
             {
                 secondArgument=@"0";
             }
