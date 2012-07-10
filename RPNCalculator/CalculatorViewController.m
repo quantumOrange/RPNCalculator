@@ -17,6 +17,7 @@
 @implementation CalculatorViewController
 @synthesize display;
 @synthesize logScreen = _logScreen;
+@synthesize displayVariables = _displayVariables;
 @synthesize userIsInTheMiddleOfEnteringANumber =_userIsInTheMiddleOfEnteringANumber;
 @synthesize brain=_brain;
 
@@ -30,13 +31,22 @@
 {
     if (self.userIsInTheMiddleOfEnteringANumber) [self enterPressed]; 
     self.display.text=[NSString stringWithFormat:@"%f",[CalculatorBrain runProgram:self.brain.program]];
+    self.displayVariables.text=@"x=0 y=0 z=0";
 }
 - (IBAction)runTest:(id)sender 
 {
     NSDictionary *testVariableValues = [CalculatorBrain testVariableValues:[sender currentTitle]];
     if (self.userIsInTheMiddleOfEnteringANumber) [self enterPressed]; 
     self.display.text=[NSString stringWithFormat:@"%f",[CalculatorBrain runProgram:self.brain.program usingVariableValues:testVariableValues]];
-
+    
+    
+    self.displayVariables.text=@"  ";
+    for (NSString *variable in testVariableValues) 
+    {
+        NSNumber *value=[testVariableValues objectForKey:variable];
+        NSString *variableEqualsValue=[variable stringByAppendingString:[NSString stringWithFormat:@"=%@  ",value]];
+        self.displayVariables.text=[self.displayVariables.text stringByAppendingString:variableEqualsValue];
+    }
 }
 
 - (IBAction)Clear 
@@ -68,21 +78,6 @@
         [self.brain removeLastObjectFromProgram];
         self.logScreen.text = [CalculatorBrain descriptionOfProgram:self.brain.program];
     }
-
-    
-    /*
-    if(self.display.text.length>1)
-    {
-        //if there is more than one digit in the display screen we just want remove the last digit
-        self.display.text= [self.display.text substringToIndex:(self.display.text.length -1)];
-    }        
-    else 
-    {
-        // if there is only one digit, we want to put a zero in the display screen
-        self.display.text=@"0";
-        self.userIsInTheMiddleOfEnteringANumber=NO;
-    }
-     */
 }
 
 - (IBAction)plusMinus 
@@ -171,6 +166,7 @@
 
 - (void)viewDidUnload {
     [self setLogScreen:nil];
+    [self setDisplayVariables:nil];
     [super viewDidUnload];
 }
 @end
