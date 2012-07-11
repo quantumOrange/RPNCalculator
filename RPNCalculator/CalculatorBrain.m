@@ -134,8 +134,12 @@
             //functions only take one argument
             NSArray *arrayForArgument=[self popDescriptionOffStack:stack];
             NSString *argument =[arrayForArgument objectAtIndex:0];
-            //if we get back something compound we'll need to add brackets
-            //if ([[arrayForArgument objectAtIndex:2] boolValue]) argument=[NSString stringWithFormat:@"(%@)",argument];
+            //If we get back an empty string, then there was nothing on the stack. popOperand uses zero in this cas, so we should do the same here.
+            if([argument isEqualToString:@""]) 
+            {
+                argument=@"0";
+            }
+            //we always want to add brackets here.
             description = [NSString stringWithFormat:@"%@(%@)",topOfStack,argument];
             stack = [arrayForArgument objectAtIndex:1];
         }
