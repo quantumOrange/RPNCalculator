@@ -8,6 +8,7 @@
 
 #import "CalculatorViewController.h"
 #import "CalculatorBrain.h"
+#import "GraphViewController.h"
 
 @interface CalculatorViewController ()
 @property (nonatomic) BOOL userIsInTheMiddleOfEnteringANumber;
@@ -166,9 +167,20 @@
 
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    [segue.destinationViewController setProgram:self.brain.program];
+}
+
+
 - (void)viewDidUnload {
     [self setLogScreen:nil];
     [self setDisplayVariables:nil];
     [super viewDidUnload];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return YES;
 }
 @end
