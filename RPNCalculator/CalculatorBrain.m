@@ -278,6 +278,14 @@
     {
         stack = [program mutableCopy];
     }
+    for (int i=0; i<stack.count; i++) 
+    {
+        id stackObject = [stack objectAtIndex:i];
+        if ([stackObject isKindOfClass:[NSString class]] && ![[self operatorsAndFunctions] member:stackObject]) 
+        {
+            [stack replaceObjectAtIndex:i withObject:[NSNumber numberWithFloat:0.0]];
+        }    
+    }
     return [self popOperandOffStack:stack];
 }
 
@@ -352,72 +360,6 @@
 
 
 
-
-/*
-- (double) performOperation: (NSString *) operation
-{
-    double result=0;
-    
-    if ([operation isEqualToString:@"+"])
-    {
-        result =  [self popOperand] + [self popOperand];
-    } 
-    else if ([operation isEqualToString:@"*"]) 
-    {
-        result =  [self popOperand] * [self popOperand];
-    }
-    else if ([operation isEqualToString:@"/"]) 
-    {
-        double numerator=[self popOperand];
-        double denominator=[self popOperand];
-        if (denominator) 
-        {
-            result =  numerator / denominator;
-        }
-        else 
-        {
-            result = 0;   
-        }    
-    }
-    else if ([operation isEqualToString:@"-"]) 
-    {
-        double secondArgument=[self popOperand];
-        result =  [self popOperand] - secondArgument;
-    }
-    else if ([operation isEqualToString:@"sin"]) 
-    {
-        result =  sin([self popOperand]);
-    }
-    else if ([operation isEqualToString:@"cos"]) 
-    {
-        result =  cos([self popOperand]);
-    }
-    else if ([operation isEqualToString:@"√"]) 
-    {
-        result =  sqrt([self popOperand]);
-    }
-    else if ([operation isEqualToString:@"π"]) 
-    {
-        result =  M_PI;
-    }
-    else 
-    {
-        result =0;
-    }
-    
-    [self pushOperand:result];
-    return result;
-}
-
- 
-- (double) popOperand
-{
-    NSNumber *operandObject = [self.programStack lastObject];
-    if (operandObject) [self.programStack removeLastObject];
-    double result= [operandObject doubleValue];
-    return result;
-}
-*/
 
 
 
