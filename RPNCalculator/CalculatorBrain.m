@@ -278,6 +278,14 @@
     {
         stack = [program mutableCopy];
     }
+    for (int i=0; i<stack.count; i++) 
+    {
+        id stackObject = [stack objectAtIndex:i];
+        if ([stackObject isKindOfClass:[NSString class]] && ![[self operatorsAndFunctions] member:stackObject]) 
+        {
+            [stack replaceObjectAtIndex:i withObject:[NSNumber numberWithFloat:0.0]];
+        }    
+    }
     return [self popOperandOffStack:stack];
 }
 
