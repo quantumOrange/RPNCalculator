@@ -6,7 +6,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
     </dependencies>
     <scenes>
-        <!--Calculator View Controller-->
+        <!--Calculator View Controller - RPN Calculator-->
         <scene sceneID="5">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
@@ -437,7 +437,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.95714861154556274" green="0.94158780574798584" blue="0.92135787010192871" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="X3e-3N-V79"/>
+                    <navigationItem key="navigationItem" title="RPN Calculator" id="X3e-3N-V79"/>
                     <connections>
                         <outlet property="display" destination="eif-7n-GoK" id="RT5-sH-yYt"/>
                         <outlet property="displayVariables" destination="k93-rN-bSa" id="4BC-LN-oM2"/>
@@ -447,7 +447,7 @@
             </objects>
             <point key="canvasLocation" x="592" y="122"/>
         </scene>
-        <!--Graph View Controller-->
+        <!--Graph View Controller - Graph-->
         <scene sceneID="B8z-to-ZSt">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oWH-bK-MJp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -475,7 +475,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.95686280727386475" green="0.94117653369903564" blue="0.92156869173049927" alpha="1" colorSpace="deviceRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="IQq-Tf-nSh"/>
+                    <navigationItem key="navigationItem" title="Graph" id="IQq-Tf-nSh"/>
                     <connections>
                         <outlet property="displayFunction" destination="KjH-2s-EeG" id="kNl-lk-ErH"/>
                         <outlet property="graphView" destination="HWo-RA-irQ" id="NWQ-Qj-l29"/>

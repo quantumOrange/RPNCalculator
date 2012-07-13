@@ -34,7 +34,6 @@
 		EDFB572F15AEFB56009BBA12 /* GraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = EDFB572B15AEFB56009BBA12 /* GraphView.m */; };
 		EDFB573015AEFB56009BBA12 /* GraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDFB572D15AEFB56009BBA12 /* GraphViewController.m */; };
 		EDFB573215AF0BA1009BBA12 /* iPadStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDFB573115AF0BA1009BBA12 /* iPadStoryboard.storyboard */; };
-		EDFB573615AF12BA009BBA12 /* RotatableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDFB573415AF12BA009BBA12 /* RotatableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,8 +73,6 @@
 		EDFB572C15AEFB56009BBA12 /* GraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphViewController.h; sourceTree = "<group>"; };
 		EDFB572D15AEFB56009BBA12 /* GraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphViewController.m; sourceTree = "<group>"; };
 		EDFB573115AF0BA1009BBA12 /* iPadStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = iPadStoryboard.storyboard; path = ../iPadStoryboard.storyboard; sourceTree = "<group>"; };
-		EDFB573315AF12BA009BBA12 /* RotatableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotatableViewController.h; sourceTree = "<group>"; };
-		EDFB573415AF12BA009BBA12 /* RotatableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotatableViewController.m; sourceTree = "<group>"; };
 		EDFB573515AF12BA009BBA12 /* SplitViewBarButtonItemPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitViewBarButtonItemPresenter.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -124,8 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				EDFB573115AF0BA1009BBA12 /* iPadStoryboard.storyboard */,
-				EDFB573315AF12BA009BBA12 /* RotatableViewController.h */,
-				EDFB573415AF12BA009BBA12 /* RotatableViewController.m */,
+				EDD1B32215A0815800CE9931 /* iPhoneStoryboard.storyboard */,
 				EDFB573515AF12BA009BBA12 /* SplitViewBarButtonItemPresenter.h */,
 				EDD1B31F15A0815800CE9931 /* CalculatorAppDelegate.h */,
 				EDD1B32015A0815800CE9931 /* CalculatorAppDelegate.m */,
@@ -135,7 +131,6 @@
 				EDFB572B15AEFB56009BBA12 /* GraphView.m */,
 				EDFB572C15AEFB56009BBA12 /* GraphViewController.h */,
 				EDFB572D15AEFB56009BBA12 /* GraphViewController.m */,
-				EDD1B32215A0815800CE9931 /* iPhoneStoryboard.storyboard */,
 				EDD1B32D15A090C100CE9931 /* CalculatorBrain.h */,
 				EDD1B32E15A090C100CE9931 /* CalculatorBrain.m */,
 				EDD1B32515A0815800CE9931 /* CalculatorViewController.h */,
@@ -255,7 +250,6 @@
 				EDFB572E15AEFB56009BBA12 /* AxesDrawer.m in Sources */,
 				EDFB572F15AEFB56009BBA12 /* GraphView.m in Sources */,
 				EDFB573015AEFB56009BBA12 /* GraphViewController.m in Sources */,
-				EDFB573615AF12BA009BBA12 /* RotatableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

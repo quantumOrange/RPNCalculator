@@ -16,27 +16,34 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="lCN-O9-NOX" customClass="GraphView">
-                                <rect key="frame" x="-2" y="0.0" width="773" height="878"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <rect key="frame" x="0.0" y="44" width="768" height="768"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="displayScreen.png" id="MyG-vj-zIX">
                                 <rect key="frame" x="469" y="908" width="288" height="76"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="cuL-vd-w5c">
                                 <rect key="frame" x="491" y="926" width="245" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="h8E-Bo-EV3">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items/>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
                     <connections>
+                        <outlet property="displayFunction" destination="cuL-vd-w5c" id="7Wu-2W-SGv"/>
                         <outlet property="graphView" destination="lCN-O9-NOX" id="hZB-J5-yIk"/>
+                        <outlet property="toolbar" destination="h8E-Bo-EV3" id="ABv-H2-4bZ"/>
                     </connections>
                 </viewController>
             </objects>
@@ -71,11 +78,11 @@
             </objects>
             <point key="canvasLocation" x="-706" y="-298"/>
         </scene>
-        <!--Calculator View Controller-->
+        <!--Calculator View Controller - Calculator-->
         <scene sceneID="5oB-x5-XRr">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1tL-QK-wiB" sceneMemberID="firstResponder"/>
-                <viewController id="bRY-M4-7bE" customClass="CalculatorViewController" sceneMemberID="viewController">
+                <viewController title="Calculator" id="bRY-M4-7bE" customClass="CalculatorViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1Vv-Hl-STY">
                         <rect key="frame" x="0.0" y="64" width="320" height="788"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -495,11 +502,14 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="updateGraph" destination="bRY-M4-7bE" eventType="touchUpInside" id="Xh5-aI-C45"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.95714861149999997" green="0.9415878057" blue="0.92135787010000003" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="ibR-fh-trJ"/>
+                    <navigationItem key="navigationItem" title="Calculator" id="ibR-fh-trJ"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
                     <connections>
                         <outlet property="display" destination="UK7-uc-WSJ" id="8Oh-9Z-BcN"/>
@@ -539,6 +549,7 @@
             <relationships>
                 <relationship kind="outlet" name="displayFunction" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="graphView" candidateClass="GraphView"/>
+                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
             </relationships>
         </class>
     </classes>

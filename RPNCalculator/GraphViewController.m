@@ -13,14 +13,34 @@
 @interface GraphViewController() <GraphViewDataSource>
 @property (nonatomic, weak) IBOutlet GraphView *graphView;
 @property (weak, nonatomic) IBOutlet UILabel *displayFunction;
-
+@property (nonatomic, weak) IBOutlet UIToolbar *toolbar;
 @end
 
 @implementation GraphViewController
 @synthesize graphView=_graphView;
 @synthesize displayFunction = _displayFunction;
 @synthesize program=_program;
+@synthesize splitViewBarButtonItem=_splitViewBarButtonItem;
+@synthesize toolbar=_toolbar;
 
+- (void) setSplitViewBarButtonItem:(UIBarButtonItem *)splitViewBarButtonItem
+{
+    if (_splitViewBarButtonItem != splitViewBarButtonItem) {
+        NSMutableArray *toolbarItems = [self.toolbar.items mutableCopy];
+        if (_splitViewBarButtonItem) [toolbarItems removeObject:_splitViewBarButtonItem];
+        if (splitViewBarButtonItem) [toolbarItems insertObject:splitViewBarButtonItem atIndex:0];
+        self.toolbar.items = toolbarItems;
+        _splitViewBarButtonItem = splitViewBarButtonItem;
+    }
+}
+
+
+- (void) setProgram:(id)program
+{
+    _program =program;
+    [self.graphView setNeedsDisplay];
+    self.displayFunction.text = [CalculatorBrain descriptionOfProgram:self.program];
+}
 
 -(void)setGraphView:(GraphView *)graphView
 {
@@ -60,7 +80,7 @@
 {
     [super viewDidLoad];
     self.displayFunction.text = [CalculatorBrain descriptionOfProgram:self.program];
-
+    
 	// Do any additional setup after loading the view.
 }
 

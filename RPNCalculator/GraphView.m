@@ -16,20 +16,42 @@
 @synthesize dataSource=_dataSource;
 @synthesize scale = _scale;
 @synthesize axisOrigin =_axisOrigin;
+@synthesize axisSize=_axisSize;
 
 
 #define DEFAULT_SCALE 1.0
-#define AXIS 160.0
+#define AXIS_IPHONE 160.0
+#define AXIS_IPAD 384.0
 #define TOPLEFT_X 0.0
 #define TOPLEFT_Y 0.0
 #define DEFAULT_POINTS_PER_UNIT 100
 
 - (CGFloat)scale
 {
-    if (!_scale) {
+    if (!_scale) 
+    {
         return DEFAULT_SCALE; // don't allow zero scale
-    } else {
+    } else 
+    {
         return _scale;
+    }
+}
+- (CGFloat)axisSize
+{
+    if(!_axisSize)
+    {
+        if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad) 
+        {
+            return AXIS_IPAD;
+        }
+        else
+        {
+            return AXIS_IPHONE;
+        }
+    }
+    else 
+    {
+        return _axisSize;
     }
 }
 
@@ -47,8 +69,9 @@
     {
         CGPoint defaultOrigin;
         
-        defaultOrigin.x=AXIS + TOPLEFT_X;
-        defaultOrigin.y=AXIS + TOPLEFT_Y;
+        defaultOrigin.x=self.axisSize + TOPLEFT_X;
+        defaultOrigin.y=self.axisSize + TOPLEFT_Y;
+                
         return defaultOrigin;
     }
     else
@@ -123,8 +146,9 @@
     rectOrigin.x=TOPLEFT_X;
     rectOrigin.y=TOPLEFT_Y;
     CGSize rectSize;
-    rectSize.width=2*AXIS;
-    rectSize.height=2*AXIS;
+    
+    rectSize.width=2*self.axisSize;
+    rectSize.height=2*self.axisSize;
     
     bounds.origin=rectOrigin;
     bounds.size=rectSize;
@@ -147,10 +171,10 @@
        
    
     CGContextBeginPath(context);
-    for (int i=0; i<=2*AXIS; i++) 
+    for (int i=0; i<=2*self.axisSize; i++) 
     {
         
-        float x = (i-AXIS)/pointsPerUnit;
+        float x = (i-self.axisSize)/pointsPerUnit;
         float y = [self.dataSource functionOfx:self evaluatedAt:x]; //delagate views datasource
         
         graphPoint.x = self.axisOrigin.x + pointsPerUnit*x;

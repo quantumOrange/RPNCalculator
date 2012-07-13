@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface GraphViewController : UIViewController
+#import "SplitViewBarButtonItemPresenter.h"
+@interface GraphViewController : UIViewController <SplitViewBarButtonItemPresenter>
 
 @property (nonatomic) id program;
+
 @end
