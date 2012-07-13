@@ -100,6 +100,8 @@
         newOrigin.x = self.axisOrigin.x + translation.x;
         newOrigin.y = self.axisOrigin.y + translation.y;
         [self setAxisOrigin: newOrigin];
+        [[NSUserDefaults standardUserDefaults] setFloat:newOrigin.x forKey:@"originX"];
+        [[NSUserDefaults standardUserDefaults] setFloat:newOrigin.y forKey:@"originY"];
         [gesture setTranslation:CGPointZero inView:self];
     }
 }
@@ -109,9 +111,13 @@
     if ((gesture.state == UIGestureRecognizerStateChanged) ||
         (gesture.state == UIGestureRecognizerStateEnded)) {
         self.scale *= gesture.scale; // adjust our scale
+        [[NSUserDefaults standardUserDefaults] setFloat:self.scale forKey:@"scale"];
         gesture.scale = 1;           // reset gestures scale to 1 (so future changes are incremental, not cumulative)
     }
 }
+
+
+
 
 - (void)tapOrigin: (UITapGestureRecognizer *) gesture
 {
@@ -120,16 +126,17 @@
     {
         CGPoint newOrigin =[gesture locationInView:self];
         [self setAxisOrigin: newOrigin];
+        [[NSUserDefaults standardUserDefaults] setFloat:newOrigin.x forKey:@"originX"];
+        [[NSUserDefaults standardUserDefaults] setFloat:newOrigin.y forKey:@"originY"];
     }
 }
-
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        
+        self.scale=[[NSUserDefaults standardUserDefaults] floatForKey:@"scale"];
     }
     return self;
 }

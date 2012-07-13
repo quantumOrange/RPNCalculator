@@ -46,6 +46,12 @@
 {
     _graphView=graphView;
     self.graphView.dataSource = self;
+    self.graphView.scale=[[NSUserDefaults standardUserDefaults] floatForKey:@"scale"];
+    
+    CGPoint axisOrigin;
+    axisOrigin.x=[[NSUserDefaults standardUserDefaults] floatForKey:@"originX"];
+    axisOrigin.y=[[NSUserDefaults standardUserDefaults] floatForKey:@"originY"];
+    self.graphView.axisOrigin=axisOrigin;
     
     [self.graphView addGestureRecognizer:[[UIPinchGestureRecognizer alloc] initWithTarget:self.graphView action:@selector(pinch:)]];
     [self.graphView addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self.graphView action:@selector(moveOrigin:)]];
@@ -60,7 +66,8 @@
     if ([result isKindOfClass:[NSNumber class]]) {
         return [result doubleValue];
     }
-    else {
+    else 
+    {
         return 0.0;
     }
 }
