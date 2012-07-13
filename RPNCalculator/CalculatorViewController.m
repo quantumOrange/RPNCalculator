@@ -42,7 +42,6 @@
 
 - (IBAction)updateGraph 
 {
-   // NSLog(@"iPad?");
     [self splitViewGraphViewController].program = self.brain.program;
 }
 
@@ -190,11 +189,13 @@
     [segue.destinationViewController setProgram:self.brain.program];
 }
 
+
 - (void)awakeFromNib  // always try to be the split view's delegate
 {
     [super awakeFromNib];
     self.splitViewController.delegate = self;
 }
+
 
 - (id <SplitViewBarButtonItemPresenter>)splitViewBarButtonItemPresenter
 {
@@ -205,12 +206,14 @@
     return detailVC;
 }
 
+
 - (BOOL)splitViewController:(UISplitViewController *)svc
    shouldHideViewController:(UIViewController *)vc
               inOrientation:(UIInterfaceOrientation)orientation
 {
     return [self splitViewBarButtonItemPresenter] ? UIInterfaceOrientationIsPortrait(orientation) : NO;
 }
+
 
 - (void)splitViewController:(UISplitViewController *)svc
      willHideViewController:(UIViewController *)aViewController
@@ -235,8 +238,16 @@
     [super viewDidUnload];
 }
 
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return YES;
+    if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad) 
+    {
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
 }
 @end
