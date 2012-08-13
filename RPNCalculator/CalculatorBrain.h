@@ -20,6 +20,7 @@
 + (id) runProgram:(id)program;
 + (id) runProgram:(id)program usingVariableValues:(NSDictionary *)variableValues;
 + (NSString *)descriptionOfProgram:(id)program;
++ (NSArray *) popDescriptionOffStack:(NSMutableArray *) stack;
 - (void) pushOperand: (double)operand;
 - (void) pushOperation:(NSString *)operation;
 - (void) removeLastObjectFromProgram;
