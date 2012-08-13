@@ -55,7 +55,7 @@
     [self.graphView setNeedsDisplay];
     //self.displayFunction.text = [CalculatorBrain descriptionOfProgram:self.program];
    NSMutableArray *stack=[program mutableCopy];
-   self.displayFunction.text = [[CalculatorBrain popDescriptionOffStack:stack] objectAtIndex:0];
+   self.displayFunction.text = [NSString stringWithFormat:@"y=%@",[[CalculatorBrain popDescriptionOffStack:stack] objectAtIndex:0]];
 }
 
 -(void)setGraphView:(GraphView *)graphView
@@ -107,7 +107,8 @@
     self.graphView.drawLines=YES;
     //self.displayFunction.text = [CalculatorBrain descriptionOfProgram:self.program];
     NSMutableArray *stack=[self.program mutableCopy];
-    self.displayFunction.text = [[CalculatorBrain popDescriptionOffStack:stack] objectAtIndex:0];
+   // [NSString stringWithFormat:@"%@,%@",[resultAndStack objectAtIndex:0],result];
+    self.displayFunction.text =[NSString stringWithFormat:@"y=%@", [[CalculatorBrain popDescriptionOffStack:stack] objectAtIndex:0]];
 	// Do any additional setup after loading the view.
 }
 
