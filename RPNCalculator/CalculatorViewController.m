@@ -87,6 +87,9 @@
     self.logScreen.text = @"";
     self.displayVariables.text =@"";
     self.userIsInTheMiddleOfEnteringANumber=NO;
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"scale"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"originX"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"originY"];
 }
 
 - (IBAction)backButton 
@@ -186,6 +189,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    
     [segue.destinationViewController setProgram:self.brain.program];
 }
 
@@ -243,11 +247,11 @@
 {
     if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad) 
     {
-        return YES;
+        return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
     }
     else
     {
-        return NO;
+        return (interfaceOrientation == UIInterfaceOrientationPortrait);
     }
 }
 @end

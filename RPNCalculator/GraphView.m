@@ -17,7 +17,7 @@
 @synthesize scale = _scale;
 @synthesize axisOrigin =_axisOrigin;
 @synthesize axisSize=_axisSize;
-
+@synthesize drawLines=_drawPixels;
 
 #define DEFAULT_SCALE 1.0
 #define AXIS_IPHONE 160.0
@@ -121,7 +121,6 @@
 
 - (void)tapOrigin: (UITapGestureRecognizer *) gesture
 {
-    gesture.numberOfTapsRequired = 3;
     if ((gesture.state == UIGestureRecognizerStateChanged) || (gesture.state == UIGestureRecognizerStateEnded))
     {
         CGPoint newOrigin =[gesture locationInView:self];
@@ -167,7 +166,7 @@
     CGFloat pointsPerUnit=DEFAULT_POINTS_PER_UNIT*self.scale;
     
     //draw graph axis
-    [AxesDrawer drawAxesInRect:bounds originAtPoint:self.axisOrigin scale:pointsPerUnit];
+    //[AxesDrawer drawAxesInRect:bounds originAtPoint:self.axisOrigin scale:pointsPerUnit];
     
     
     
@@ -175,30 +174,138 @@
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGPoint graphPoint;
-       
-   
-    CGContextBeginPath(context);
-    for (int i=0; i<=2*self.axisSize; i++) 
+    
+    if(self.drawLines)
     {
-        
-        float x = (i-self.axisSize)/pointsPerUnit;
-        float y = [self.dataSource functionOfx:self evaluatedAt:x]; //delagate views datasource
-        
-        graphPoint.x = self.axisOrigin.x + pointsPerUnit*x;
-        graphPoint.y = self.axisOrigin.y - pointsPerUnit*y;
-        
-        if (i==0) 
+        CGContextBeginPath(context);
+        for (int i=0; i<=2*self.axisSize; i++) 
         {
-            CGContextMoveToPoint(context, graphPoint.x, graphPoint.y);
-        } 
-        else 
+            
+            float x = (i-self.axisSize)/pointsPerUnit;
+            float y = [self.dataSource functionOfx:self evaluatedAt:x]; //delagate views datasource
+            
+            graphPoint.x = self.axisOrigin.x + pointsPerUnit*x;
+            graphPoint.y = self.axisOrigin.y - pointsPerUnit*y;
+            
+            if (i==0) 
+            {
+                CGContextMoveToPoint(context, graphPoint.x, graphPoint.y);
+            } 
+            else 
+            {
+                CGContextAddLineToPoint(context, graphPoint.x, graphPoint.y);
+            }
+            
+        }
+        CGContextStrokePath(context);
+    }
+    else
+    {
+        int pixelPerPoint =self.contentScaleFactor;
+        //pixelPerPoint =1;
+        static const size_t kComponentsPerPixel = 4;
+        static const size_t kBitsPerComponent = sizeof(unsigned char) * 8;
+        
+        NSInteger imageHeight =2*self.axisSize*pixelPerPoint;
+        NSInteger imageWidth = 2*self.axisSize*pixelPerPoint;
+        CGContextSaveGState(context); 
+        
+        CGColorSpaceRef rgb = CGColorSpaceCreateDeviceRGB();
+        
+        size_t bufferLength = imageWidth * imageHeight * kComponentsPerPixel;
+        
+        unsigned char *buffer = malloc(bufferLength);
+        
+        
+        for (NSInteger i = 0; i < bufferLength; ++i)
         {
-            CGContextAddLineToPoint(context, graphPoint.x, graphPoint.y);
+            buffer[i] = 255;
+        }
+
+        
+        for (int imageX=0; imageX<imageWidth ; imageX++) 
+        {
+            float xValue = (imageX-self.axisOrigin.x)/pointsPerUnit;
+            float yValue = [self.dataSource functionOfx:self evaluatedAt:xValue]; //delagate views datasource
+            int imageY= imageHeight- self.axisOrigin.y + pointsPerUnit*yValue;
+            int pointXY= (imageX + imageY*imageWidth)*kComponentsPerPixel;
+            if (imageY<imageHeight) 
+            {   
+                buffer[pointXY ] = 0;
+                buffer[pointXY +1] = 0;
+                buffer[pointXY +2] = 0;
+               // buffer[pointXY +3] would set the alpha value;
+            }
         }
         
+                
+        CGDataProviderRef provider = CGDataProviderCreateWithData(NULL, buffer, bufferLength, NULL);;
+        
+        CGImageRef imageRef = CGImageCreate(imageWidth, imageHeight, kBitsPerComponent, kBitsPerComponent * kComponentsPerPixel, kComponentsPerPixel * imageWidth, rgb, kCGBitmapByteOrderDefault | kCGImageAlphaLast, provider, NULL, TRUE, kCGRenderingIntentDefault);
+        
+        CGContextDrawImage(context, CGRectMake(0, 0, imageHeight, imageWidth), imageRef);
+        
+        CGImageRelease(imageRef);
+        CGDataProviderRelease(provider);
+        CGColorSpaceRelease(rgb);     
+        
+        CGContextRestoreGState(context);
+        
+        
+        /*
+        static const size_t kComponentsPerPixel = 4;
+        static const size_t kBitsPerComponent = sizeof(unsigned char) * 8;
+        
+        NSInteger imageHeight =2*self.axisSize;
+        NSInteger imageWidth = 2*self.axisSize;
+        CGContextSaveGState(context); 
+        
+        CGColorSpaceRef rgb = CGColorSpaceCreateDeviceRGB();
+        
+        size_t bufferLength = imageWidth * imageHeight * kComponentsPerPixel;
+        
+        unsigned char *buffer = malloc(bufferLength);
+        
+        
+        for (NSInteger i = 0; i < bufferLength; ++i)
+        {
+            buffer[i] = 255;
+        }
+        
+        int index=0;
+        
+        for (int i=0; i<imageWidth ; i++) 
+        {
+            float x = (i-self.axisSize)/pointsPerUnit;
+            float y = [self.dataSource functionOfx:self evaluatedAt:x]; //delagate views datasource
+            //int gpX = self.axisOrigin.x + pointsPerUnit*x;
+            int gpY= self.axisOrigin.y - pointsPerUnit*y;
+            int pointXY=index+gpY;
+            if(gpY<imageHeight)
+            {
+                buffer[pointXY ] = 0;
+                buffer[pointXY +1] = 0;
+                buffer[pointXY +2] = 0;
+                buffer[pointXY +3] = 0;
+            }
+            
+            index += imageHeight*kComponentsPerPixel;
+        }
+        
+        CGDataProviderRef provider = CGDataProviderCreateWithData(NULL, buffer, bufferLength, NULL);;
+        
+        CGImageRef imageRef = CGImageCreate(imageWidth, imageHeight, kBitsPerComponent, kBitsPerComponent * kComponentsPerPixel, kComponentsPerPixel * imageWidth, rgb, kCGBitmapByteOrderDefault | kCGImageAlphaLast, provider, NULL, false, kCGRenderingIntentDefault);
+        
+        CGContextDrawImage(context, CGRectMake(0, 0, imageHeight, imageWidth), imageRef);
+        
+        CGImageRelease(imageRef);
+        CGDataProviderRelease(provider);
+        CGColorSpaceRelease(rgb);     
+        
+        CGContextRestoreGState(context);
+         */
     }
-     
-    CGContextStrokePath(context);
+    [AxesDrawer drawAxesInRect:bounds originAtPoint:self.axisOrigin scale:pointsPerUnit];
 }
 
 @end

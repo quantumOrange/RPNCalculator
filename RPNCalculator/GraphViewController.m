@@ -34,6 +34,20 @@
     }
 }
 
+- (IBAction)drawLines:(UISwitch *)sender 
+{
+    if(sender.on)
+    {
+        self.graphView.drawLines=YES;
+        NSLog(@"Line");
+    }
+    else 
+    {
+        self.graphView.drawLines=NO;
+        NSLog(@"Pixels");
+    }
+    [self.graphView setNeedsDisplay];
+}
 
 - (void) setProgram:(id)program
 {
@@ -55,7 +69,9 @@
     
     [self.graphView addGestureRecognizer:[[UIPinchGestureRecognizer alloc] initWithTarget:self.graphView action:@selector(pinch:)]];
     [self.graphView addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self.graphView action:@selector(moveOrigin:)]];
-    [self.graphView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.graphView action:@selector(tapOrigin:)]];
+    UITapGestureRecognizer  *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self.graphView action:@selector(tapOrigin:)];
+    tapGesture.numberOfTapsRequired = 3;
+    [self.graphView addGestureRecognizer:tapGesture];
 }
 
 - (float) functionOfx:(GraphView *) sender evaluatedAt: (float) x
@@ -86,6 +102,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.graphView.drawLines=YES;
     self.displayFunction.text = [CalculatorBrain descriptionOfProgram:self.program];
     
 	// Do any additional setup after loading the view.
